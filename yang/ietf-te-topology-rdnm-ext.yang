@@ -36,11 +36,11 @@ module ietf-te-topology-fgnm-ext {
     "This module provide some extensions to TE topology model, based
     on transport fine-grain network management requirement";
 
-  revision 2024-07-08 {
+  revision 2025-01-16 {
     description
       "Revision 1.0";
     reference
-      "draft-yu-ccamp-te-fgnm-yang-01";
+      "draft-yu-ccamp-te-fgnm-yang-02";
   }
   
   augment "/nw:networks/nw:network/nw:node/tet:te" {
@@ -77,7 +77,13 @@ module ietf-te-topology-fgnm-ext {
   }
   
   grouping node-fgnm-ext-grouping {
+    description
+	  "Generic extension of node.";
+	  
     choice layer-specific-extension {
+	  description
+	    "The layer rate information.";
+		
       case generic {
       
       }
@@ -85,7 +91,13 @@ module ietf-te-topology-fgnm-ext {
   }
   
   grouping tp-fgnm-ext-grouping {
+    description
+	  "Generic extension of TP.";
+	  
     choice layer-specific-extension {
+	  description
+	    "The layer rate information.";
+		
       case generic {
       
       }
@@ -93,7 +105,13 @@ module ietf-te-topology-fgnm-ext {
   }
   
   grouping ttp-fgnm-ext-grouping {
+    description
+	  "Generic extension of TTP.";
+	  
     choice layer-specific-extension {
+	  description
+	    "The layer rate information.";
+		
       case generic {
       
       }
@@ -101,15 +119,27 @@ module ietf-te-topology-fgnm-ext {
   }
   
   grouping link-fgnm-ext-grouping {
+    description
+	  "Generic extension of link.";
+	  
     choice layer-specific-extension {
+	  description
+	    "The layer rate information.";
+		
       case generic {
       }
     }
   }
   
   rpc query-ttp-by-tps {
+    description
+	  "Query all the TTPs on the LTPs";
+	  
     input {
       list tp-list {
+	    description
+		  "the LTPs to retrieve.";
+		  
         key tp-id;
         leaf tp-id {
           type leafref {
@@ -134,6 +164,9 @@ module ietf-te-topology-fgnm-ext {
       }
       
       list result-list {
+	    description
+		  "The result list.";
+		  
         key tp-id;
         
         leaf tp-id {
@@ -146,6 +179,9 @@ module ietf-te-topology-fgnm-ext {
         }
         
         list ttp-list {
+		  description
+		    "the TTPs list for this LTP.";
+			
           leaf tunnel-tp-id {
             type leafref {
               path "/nw:networks/nw:network/nw:node/tet:te" + 

@@ -1,4 +1,4 @@
-module: ietf-te-topology-fgnm-ext
+module: ietf-te-topology-rdnm-ext
 
   augment /nw:networks/nw:network/nw:node/tet:te:
     +--rw (layer-specific-extension)?
